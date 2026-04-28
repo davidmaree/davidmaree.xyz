@@ -808,3 +808,42 @@ body.cursor-click #cursor-ring {
 .reveal-up.active { opacity: 1; transform: none; }
 .reveal-slide { opacity: 0; transform: translateX(-28px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .reveal-slide.active { opacity: 1; transform: none; }
+
+/* ── MOBILE OPTIMIZATIONS ───────────────── */
+@media (max-width: 768px) {
+    /* Layout & Sections */
+    .section { padding: 4rem 0; }
+    .section-inner, .nav-inner, .hero-inner, .footer-inner { padding: 0 1.25rem; }
+    .section-title { font-size: 2.4rem; margin-bottom: 1rem; }
+    
+    /* Hero */
+    .hero-inner { padding-top: 6rem; gap: 2.5rem; }
+    .hero-name { font-size: 3.5rem; }
+    .hero-photo-wrap { max-width: 260px; margin: 0 auto; }
+    
+    /* Terminal */
+    .mac-window { height: 75vh; margin: 1rem; }
+    
+    /* Cards & Grids */
+    .cards-grid, .two-col-grid, .stats-grid, .contact-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .card { padding: 1.5rem; }
+    
+    /* Reviews */
+    .review-card { width: 80vw; max-width: 320px; padding: 1.25rem; }
+    
+    /* Playground */
+    .game-tabs { flex-wrap: wrap; justify-content: center; border-radius: 12px; }
+    .game-tab { padding: .5rem 1rem; width: 100%; text-align: center; }
+    #gameCanvas { width: 100%; height: auto; }
+    
+    /* Stats & Timeline */
+    .stat-card h3 { font-size: 2.6rem; }
+    .timeline { padding-left: 1.5rem; }
+    .timeline-dot { left: -1.9rem; }
+    
+    /* Remove hover states on touch */
+    .card:hover { transform: none; box-shadow: none; border-color: var(--border); }
+    .glow-button:hover { box-shadow: none; }
+}
