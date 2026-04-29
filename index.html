@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/logot.png">
 </head>
 <body>
 
@@ -38,7 +39,7 @@
                     <span class="minimize"></span>
                     <span class="maximize"></span>
                 </div>
-                <div class="mac-title">Welcome to davidmaree.xyz — zsh — 120×36</div>
+                <div class="mac-title">Welcome to DAVIDMAREE.XYZ</div>
             </div>
             <div class="mac-body" id="terminal-body"></div>
         </div>
@@ -127,7 +128,7 @@
                     <span class="section-tag">• ORIGIN STORY</span>
                     <h2 class="section-title animated-title">
                         <span class="anim-word">From</span>
-                        <span class="anim-word">zero</span><br>
+                        <span class="anim-word">zero</span>
                         <span class="anim-word">to</span>
                         <span class="anim-word">builder.</span>
                     </h2>
@@ -321,7 +322,20 @@
                         <div class="game-hud">
                             <span class="hud-label">SCORE</span>
                             <span id="score-val" class="hud-score">0</span>
+                    </div>
+                    
+                    <button class="btn-ghost-sm" id="view-code-btn" style="margin-top: .5rem; width: 100%; max-width: 220px; justify-content: center;">
+                        <i class="fa-solid fa-code"></i> View Source Code
+                    </button>
+                    
+                    <div id="code-snippet-wrap" class="card" style="display: none; width: 100%; max-width: 520px; text-align: left; padding: 1rem; margin-top: 1rem; font-family: var(--mono); font-size: .8rem; overflow-x: auto;">
+                        <div style="display: flex; gap: 6px; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border);">
+                            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></span>
+                            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></span>
+                            <span style="width:10px;height:10px;border-radius:50%;background:#28c840;"></span>
+                            <span id="code-filename" style="margin-left:auto; color:var(--gray); font-size:.7rem;">snake.js</span>
                         </div>
+                        <pre style="margin: 0;"><code id="code-snippet-body" style="color:#d0d0d0; line-height:1.5;"></code></pre>
                     </div>
                 </div>
             </div>
@@ -338,24 +352,24 @@
 
                 <!-- Contact Info -->
                 <div class="contact-grid">
-                    <a href="mailto:davidmaree123@gmail.com" class="contact-card card">
+                    <a href="mailto:business@davidmaree.xyz" class="contact-card card">
                         <i class="fa-regular fa-envelope"></i>
                         <div>
                             <span class="contact-label">EMAIL</span>
-                            <span class="contact-value">davidmaree123@gmail.com</span>
+                            <span class="contact-value">business@davidmaree.xyz</span>
                         </div>
                     </a>
-                    <a href="https://wa.me/27812307634" target="_blank" class="contact-card card">
+                    <a href="https://wa.me/27812307634?text=Hi%20I%20am%20looking%20to%20discuss%20a%20project." target="_blank" class="contact-card card">
                         <i class="fa-brands fa-whatsapp"></i>
                         <div>
-                            <span class="contact-label">WHATSAPP</span>
+                            <span class="contact-label">WHATSAPP/CALL</span>
                             <span class="contact-value">(+27) 81 230 7634</span>
                         </div>
                     </a>
                     <div class="contact-card card">
                         <i class="fa-solid fa-globe"></i>
                         <div>
-                            <span class="contact-label">PORTFOLIO</span>
+                            <span class="contact-label">WEBSITE</span>
                             <span class="contact-value">davidmaree.xyz</span>
                         </div>
                     </div>
@@ -382,7 +396,7 @@
     </main>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/27812307634" target="_blank" class="floating-wa" id="floating-wa">
+    <a href="https://wa.me/27812307634?text=Hi%20I%20am%20looking%20to%20discuss%20a%20project." target="_blank" class="floating-wa" id="floating-wa">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 

@@ -215,11 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Reviews ─────────────────────────────────
     function initReviews() {
         const reviews = [
-            { name: "Thabo N.",    role: "E-Commerce Store Owner",    text: "David rebuilt our Shopify store from the ground up. Conversion rates went from 1.2% to 3.8% within the first month. Absolutely world-class work." },
-            { name: "Melissa vdB.", role: "Online Boutique Founder",  text: "He took our brand from a Canva logo to a fully live store in two weeks. Sales started coming in on day one. Can't recommend enough." },
-            { name: "Keanu P.",    role: "Mentorship Student",         text: "His 1-on-1 sessions are the real deal. He doesn't just teach theory — he shows you exactly how to build and sell. I launched my store in 3 weeks." },
-            { name: "Zanele M.",   role: "Fashion Store Owner",        text: "The AI chatbot David integrated on our site handles 80% of customer queries automatically. It's like having a full-time support agent for free." },
-            { name: "Ryan P.",     role: "Tech Startup Founder",       text: "We needed a complex web app built fast. David delivered clean, scalable code ahead of schedule. He's now our go-to developer for everything." },
+            { name: "Thabo N.",    avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Felix&backgroundColor=b6e3f4", role: "E-Commerce Store Owner",    text: "David rebuilt our Shopify store from the ground up. Conversion rates went from 1.2% to 3.8% within the first month. Absolutely world-class work." },
+            { name: "Melissa vdB.", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Aneka&backgroundColor=ffdfbf", role: "Online Boutique Founder",  text: "He took our brand from a Canva logo to a fully live store in two weeks. Sales started coming in on day one. Can't recommend enough." },
+            { name: "Keanu P.",    avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Jack&backgroundColor=c0aede", role: "Mentorship Student",         text: "His 1-on-1 sessions are the real deal. He doesn't just teach theory — he shows you exactly how to build and sell. I launched my store in 3 weeks." },
+            { name: "Zanele M.",   avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Jocelyn&backgroundColor=ffd5dc", role: "Fashion Store Owner",        text: "The AI chatbot David integrated on our site handles 80% of customer queries automatically. It's like having a full-time support agent for free." },
+            { name: "Ryan P.",     avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Brian&backgroundColor=d1d4f9", role: "Tech Startup Founder",       text: "We needed a complex web app built fast. David delivered clean, scalable code ahead of schedule. He's now our go-to developer for everything." },
         ];
 
         function buildTrack(id, list) {
@@ -231,8 +231,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 c.innerHTML = `
                     <div class="review-stars">${'★'.repeat(5)}</div>
                     <p class="review-text">"${r.text}"</p>
-                    <div class="review-author">${r.name}</div>
-                    <div class="review-role">${r.role}</div>`;
+                    <div class="review-footer">
+                        <img src="${r.avatar}" alt="${r.name}" class="review-avatar">
+                        <div class="review-meta">
+                            <div class="review-author">${r.name}</div>
+                            <div class="review-role">${r.role}</div>
+                        </div>
+                    </div>`;
                 track.appendChild(c);
             });
         }
@@ -424,6 +429,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         startBtn.addEventListener('click', startGame);
 
+        const codeBtn = document.getElementById('view-code-btn');
+        const codeWrap = document.getElementById('code-snippet-wrap');
+        const codeBody = document.getElementById('code-snippet-body');
+        const codeFile = document.getElementById('code-filename');
+
+        const codeSnippets = {
+            snake: snakeTick.toString(),
+            pong: pongTick.toString(),
+            particles: particleTick.toString()
+        };
+
+        codeBtn.addEventListener('click', () => {
+            const isHidden = codeWrap.style.display === 'none';
+            codeWrap.style.display = isHidden ? 'block' : 'none';
+            codeBtn.innerHTML = isHidden ? '<i class="fa-solid fa-code"></i> Hide Source Code' : '<i class="fa-solid fa-code"></i> View Source Code';
+        });
+
         tabs.forEach(tab => tab.addEventListener('click', e => {
             tabs.forEach(t=>t.classList.remove('active'));
             e.currentTarget.classList.add('active');
@@ -432,14 +454,19 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillStyle='#030303'; ctx.fillRect(0,0,W,H);
             overlay.classList.remove('hidden');
             const meta = {
-                snake:     { title:'Neon Snake',      desc:'Arrow keys to move. Don\'t bite yourself!', btn:'Start Game'  },
-                pong:      { title:'Neon Pong',        desc:'↑ ↓ arrow keys. Beat the AI!',              btn:'Start Game'  },
-                particles: { title:'Particle Physics', desc:'Move mouse over canvas to attract particles', btn:'Start Demo' }
+                snake:     { title:'Neon Snake',      desc:'Arrow keys to move. Don\'t bite yourself!', btn:'Start Game', file:'snake.js' },
+                pong:      { title:'Neon Pong',        desc:'↑ ↓ arrow keys. Beat the AI!',              btn:'Start Game', file:'pong.js' },
+                particles: { title:'Particle Physics', desc:'Move mouse over canvas to attract particles', btn:'Start Demo', file:'particles.js' }
             };
             const m=meta[current];
             titleEl.textContent=m.title; descEl.textContent=m.desc; startBtn.textContent=m.btn;
+            codeFile.textContent=m.file;
+            codeBody.textContent=codeSnippets[current];
             scoreEl.textContent='0';
         }));
+        
+        // Initialize snippet
+        codeBody.textContent = codeSnippets['snake'];
 
         document.addEventListener('keydown', e => {
             if(!running) return;
@@ -449,10 +476,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(e.key==='ArrowRight' && sdx===0) { sdx= G; sdy=0; }
                 if(e.key==='ArrowUp'    && sdy===0) { sdx=0; sdy=-G; }
                 if(e.key==='ArrowDown'  && sdy===0) { sdx=0; sdy= G; }
+            } else if(current==='pong') {
+                if(e.key==='ArrowUp') py = Math.max(py-20, 0);
+                if(e.key==='ArrowDown') py = Math.min(py+20, H-PH);
             }
-            if(current==='pong') {
-                if(e.key==='ArrowUp')   py=Math.max(0,py-22);
-                if(e.key==='ArrowDown') py=Math.min(H-PH,py+22);
+        });
+
+        // ── MOBILE TOUCH CONTROLS ────────
+        let tx = 0, ty = 0;
+        canvas.addEventListener('touchstart', e => {
+            if(!running) return;
+            if (current === 'snake' || current === 'pong') e.preventDefault();
+            const touch = e.touches[0];
+            tx = touch.clientX;
+            ty = touch.clientY;
+        }, { passive: false });
+
+        canvas.addEventListener('touchmove', e => {
+            if(!running) return;
+            const touch = e.touches[0];
+            const r = canvas.getBoundingClientRect();
+            
+            if(current === 'particles') {
+                mx = (touch.clientX - r.left) * (W / r.width);
+                my = (touch.clientY - r.top) * (H / r.height);
+            } else if (current === 'pong') {
+                e.preventDefault();
+                let touchY = (touch.clientY - r.top) * (H / r.height);
+                py = Math.max(0, Math.min(touchY - PH/2, H - PH));
+            } else if (current === 'snake') {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        canvas.addEventListener('touchend', e => {
+            if(!running || current !== 'snake') return;
+            const touch = e.changedTouches[0];
+            let dx = touch.clientX - tx;
+            let dy = touch.clientY - ty;
+            
+            if (Math.abs(dx) > Math.abs(dy)) {
+                if (dx > 30 && sdx === 0) { sdx = G; sdy = 0; } // Right
+                else if (dx < -30 && sdx === 0) { sdx = -G; sdy = 0; } // Left
+            } else {
+                if (dy > 30 && sdy === 0) { sdx = 0; sdy = G; } // Down
+                else if (dy < -30 && sdy === 0) { sdx = 0; sdy = -G; } // Up
             }
         });
 
