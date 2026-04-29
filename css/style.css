@@ -365,35 +365,21 @@ body.cursor-click #cursor-ring {
         align-items: center;
         text-align: center;
         gap: 0;
-        justify-content: center;
     }
-    .hero-left, .hero-right {
-        display: contents;
-    }
-    .status-pill {
-        order: 1;
-        margin-bottom: 1.5rem;
-    }
-    .hero-photo-wrap {
-        order: 2;
+    .desktop-photo { display: none; }
+    .mobile-photo {
+        display: block;
         width: 100%;
         max-width: 380px;
-        margin-bottom: 2rem;
+        margin: 0 auto 2rem auto;
     }
-    .hero-name {
-        order: 3;
-        margin-bottom: 1rem;
-    }
-    .hero-tagline {
-        order: 4;
-        margin-bottom: 2rem;
-    }
-    .hero-btns {
-        order: 5;
-    }
+    .hero-left { flex: none; width: 100%; }
+    .hero-right { display: none; }
+    .scroll-hint { bottom: 5rem; }
 }
 
 .hero-left { flex: 1; max-width: 600px; }
+.mobile-photo { display: none; }
 
 .status-pill {
     display: inline-flex;
@@ -596,6 +582,20 @@ body.cursor-click #cursor-ring {
 }
 .timeline-item h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: .35rem; }
 .timeline-item p { color: var(--gray); font-size: .95rem; line-height: 1.55; }
+
+.timeline-item:not(:last-child)::after {
+    content: '\f078';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: -3.05rem;
+    bottom: 0.75rem;
+    color: var(--gray);
+    background: var(--bg);
+    font-size: 0.8rem;
+    padding: 0.4rem 0;
+    line-height: 1;
+}
 
 /* ── STATS ──────────────────────────────── */
 .stats-grid {
