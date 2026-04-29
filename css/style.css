@@ -196,6 +196,19 @@ body.cursor-click #cursor-ring {
 .term-ok  { color: #28c840; }
 .term-warn { color: #febc2e; }
 .term-path { color: #79b8ff; }
+
+.term-logo {
+    overflow-x: auto;
+    margin: 0.25rem 0;
+}
+.term-logo pre {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    line-height: 1.3;
+    white-space: pre;
+    color: #28c840;
+    margin: 0;
+}
 .term-cursor {
     display: inline-block;
     width: 9px; height: 1.1em;

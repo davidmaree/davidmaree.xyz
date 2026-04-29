@@ -153,12 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const DM_LOGO = [
-        { t: "  ██████╗ ███╗   ███╗       ██╗  ██╗██╗   ██╗███████╗", c: "term-ok" },
-        { t: "  ██╔══██╗████╗ ████║       ╚██╗██╔╝╚██╗ ██╔╝╚══███╔╝", c: "term-ok" },
-        { t: "  ██║  ██║██╔████╔██║        ╚███╔╝  ╚████╔╝   ███╔╝  ", c: "term-ok" },
-        { t: "  ██║  ██║██║╚██╔╝██║  ██╗   ██╔██╗   ╚██╔╝   ███╔╝   ", c: "term-ok" },
-        { t: "  ██████╔╝██║ ╚═╝ ██║  ██║  ██╔╝ ██╗   ██║   ███████╗ ", c: "term-ok" },
-        { t: "  ╚═════╝ ╚═╝     ╚═╝  ╚═╝  ╚═╝  ╚═╝   ╚═╝   ╚══════╝ ", c: "term-ok" },
+        "  ██████╗ ███╗   ███╗       ██╗  ██╗██╗   ██╗███████╗",
+        "  ██╔══██╗████╗ ████║       ╚██╗██╔╝╚██╗ ██╔╝╚══███╔╝",
+        "  ██║  ██║██╔████╔██║        ╚███╔╝  ╚████╔╝   ███╔╝  ",
+        "  ██║  ██║██║╚██╔╝██║  ██╗   ██╔██╗   ╚██╔╝   ███╔╝   ",
+        "  ██████╔╝██║ ╚═╝ ██║  ██║  ██╔╝ ██╗   ██║   ███████╗ ",
+        "  ╚═════╝ ╚═╝     ╚═╝  ╚═╝  ╚═╝  ╚═╝   ╚═╝   ╚══════╝ ",
     ];
 
     function runTerminal() {
@@ -180,16 +180,17 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Print DM.XYZ logo then fade to site
                 setTimeout(() => {
-                    const blank = document.createElement('div');
-                    termBody.appendChild(blank);
+                    termBody.appendChild(document.createElement('div'));
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'term-logo';
+                    const pre = document.createElement('pre');
+                    wrapper.appendChild(pre);
+                    termBody.appendChild(wrapper);
+
                     let j = 0;
                     function nextLogo() {
                         if (j < DM_LOGO.length) {
-                            const { t, c } = DM_LOGO[j++];
-                            const div = document.createElement('div');
-                            if (c) div.classList.add(c);
-                            div.textContent = t;
-                            termBody.appendChild(div);
+                            pre.textContent += DM_LOGO[j++] + '\n';
                             termBody.scrollTop = termBody.scrollHeight;
                             setTimeout(nextLogo, 55);
                         } else {
