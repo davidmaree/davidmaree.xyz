@@ -112,21 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('no-scroll');
 
     const BOOT = [
-        { t: "Last login: Mon Apr 28 22:05:56 on ttys002",              c: ""          },
+        { t: "Last login: " + new Date().toDateString(),              c: ""          },
         { t: "",                                                          c: ""          },
-        { t: "david@MacBook-Pro ~ % whoami",                             c: "term-ok"   },
-        { t: "david-maree",                                               c: ""          },
+        { t: "admin@System ~ % init_sequence --target=davidmaree.xyz",   c: "term-ok"   },
         { t: "",                                                          c: ""          },
-        { t: "david@MacBook-Pro ~ % npm run launch --project=davidmaree.xyz", c: "term-ok" },
+        { t: "> system@v3.0.0 booting",                                  c: "term-warn" },
+        { t: "> establishing secure connection...",                       c: "term-warn" },
         { t: "",                                                          c: ""          },
-        { t: "> davidmaree.xyz@3.0.0 launch",                            c: "term-warn" },
-        { t: "> node server/boot.js --env=production",                   c: "term-warn" },
-        { t: "",                                                          c: ""          },
-        { t: "  [1/5] Loading portfolio modules...        ✓",            c: "term-ok"   },
-        { t: "  [2/5] Compiling AI integration engine...  ✓",            c: "term-ok"   },
-        { t: "  [3/5] Initialising e-commerce pipeline... ✓",            c: "term-ok"   },
-        { t: "  [4/5] Resolving domain davidmaree.xyz...  ✓",            c: "term-path" },
-        { t: "  [5/5] Deploying to production...          ✓",            c: "term-ok"   },
+        { t: "  [1/5] Loading interface modules...        ✓",            c: "term-ok"   },
+        { t: "  [2/5] Initializing core engine...         ✓",            c: "term-ok"   },
+        { t: "  [3/5] Verifying neural pathways...        ✓",            c: "term-ok"   },
+        { t: "  [4/5] Establishing host protocol...       ✓",            c: "term-path" },
+        { t: "  [5/5] Deployment complete.                ✓",            c: "term-ok"   },
         { t: "",                                                          c: ""          },
         { t: "  All systems operational.",                                c: "term-ok"   },
         { t: "",                                                          c: ""          },
@@ -134,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { t: "  ║   Welcome to davidmaree.xyz  v3.0   ║",               c: "term-ok"   },
         { t: "  ╚══════════════════════════════════════╝",               c: ""          },
         { t: "",                                                          c: ""          },
-        { t: "  Full-Stack Developer · AI Specialist · E-Commerce Expert", c: "term-path" },
+        { t: "  Initializing workspace...", c: "term-path" },
     ];
 
     document.getElementById('enter-btn').addEventListener('click', () => {

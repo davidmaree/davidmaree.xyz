@@ -2,7 +2,7 @@
     --bg: #000;
     --white: #fff;
     --gray: #888;
-    --card-bg: rgba(255,255,255,0.03);
+    --card-bg: #0c0c0c;
     --border: rgba(255,255,255,0.1);
     --border-hover: rgba(255,255,255,0.3);
     --green: #22C55E;
@@ -138,7 +138,7 @@ body.cursor-click #cursor-ring {
     position: fixed;
     inset: 0;
     z-index: 190;
-    background: rgba(0,0,0,.92);
+    background: transparent;
     display: none;
     align-items: center;
     justify-content: center;
@@ -258,6 +258,9 @@ body.cursor-click #cursor-ring {
 
 @media (max-width: 768px) {
     .nav-links { display: none; }
+    .nav-inner { height: 86px; }
+    .nav-logo { height: 56px; }
+    .nav-cta { padding: .6rem 1.4rem; font-size: 1rem; }
 }
 
 /* ── BUTTONS ────────────────────────────── */
@@ -357,8 +360,8 @@ body.cursor-click #cursor-ring {
     gap: 4rem;
 }
 @media (max-width: 900px) {
-    .hero-inner { flex-direction: column-reverse; align-items: center; text-align: center; }
-    .hero-right { max-width: 280px; }
+    .hero-inner { flex-direction: column-reverse; align-items: center; text-align: center; gap: 5px; }
+    .hero-right { max-width: 320px; }
 }
 
 .hero-left { flex: 1; max-width: 600px; }
@@ -460,6 +463,7 @@ body.cursor-click #cursor-ring {
     padding: 7rem 0;
     position: relative;
     border-top: 1px solid var(--border);
+    background: var(--bg);
 }
 
 .section-header { margin-bottom: 4rem; text-align: center; }
