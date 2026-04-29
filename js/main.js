@@ -572,4 +572,26 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { cycleStatus(); scheduleNext(); }, delay);
     })();
 
+    // ══════════════════════════════════════════════
+    // SECTION SCROLL ARROWS
+    // ══════════════════════════════════════════════
+    const sections = Array.from(document.querySelectorAll('main section'));
+
+    sections.forEach((section, i) => {
+        const next = sections[i + 1];
+        if (!next) return;
+
+        // Hero already has a .scroll-hint — reuse it
+        let hint = section.querySelector('.scroll-hint');
+        if (!hint) {
+            hint = document.createElement('div');
+            hint.className = 'scroll-hint';
+            hint.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
+            section.appendChild(hint);
+        }
+
+        hint.style.cursor = 'pointer';
+        hint.addEventListener('click', () => next.scrollIntoView({ behavior: 'smooth' }));
+    });
+
 });

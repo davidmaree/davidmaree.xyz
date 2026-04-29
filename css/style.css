@@ -875,7 +875,8 @@ body.cursor-click #cursor-ring {
     .hero-tagline { font-size: .95rem; margin-bottom: 1.5rem; padding: 0 1rem; }
     .mobile-photo { display: block !important; margin-top: -4rem; margin-bottom: 2rem; }
     .hero-photo-wrap { max-width: 400px; margin: 0 auto; }
-    .scroll-hint { position: static; transform: none; text-align: center; padding: 1.25rem 0 1rem; animation: bob-mobile 2s ease-in-out infinite; }
+    #hero .scroll-hint { position: static; transform: none; text-align: center; padding: 1.25rem 0 1rem; animation: bob-mobile 2s ease-in-out infinite; }
+    .section .scroll-hint { bottom: 1.5rem; }
     .hero-btns { justify-content: center; flex-direction: column; gap: 1rem; width: 100%; max-width: 280px; margin: 0 auto; }
     .hero-btns a { width: 100%; justify-content: center; }
     
