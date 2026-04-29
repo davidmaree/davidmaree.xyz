@@ -872,7 +872,7 @@ body.cursor-click #cursor-ring {
     /* Hero */
     .hero-inner { padding-top: 5rem; padding-bottom: 2rem; gap: 2rem; flex-direction: column-reverse; text-align: center; }
     .status-pill { margin-bottom: 0.75rem; }
-    .hero-name { font-size: 3rem; margin-bottom: 1rem; }
+    .hero-name { display: none; }
     .hero-tagline { font-size: .95rem; margin-bottom: 1.5rem; padding: 0 1rem; }
     .mobile-photo { display: block !important; margin-top: -4rem; margin-bottom: 2rem; }
     .hero-photo-wrap { max-width: 400px; margin: 0 auto; }
