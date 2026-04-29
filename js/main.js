@@ -41,7 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buildStars();
     drawStars();
-    window.addEventListener('resize', buildStars);
+    
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+        if (window.innerWidth !== lastWidth) {
+            lastWidth = window.innerWidth;
+            buildStars();
+        } else {
+            starCanvas.height = window.innerHeight;
+        }
+    });
 
     // ══════════════════════════════════════════════
     // 2. CUSTOM CURSOR (desktop only)

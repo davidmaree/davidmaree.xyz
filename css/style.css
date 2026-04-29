@@ -360,8 +360,9 @@ body.cursor-click #cursor-ring {
     gap: 4rem;
 }
 @media (max-width: 900px) {
-    .hero-inner { flex-direction: column-reverse; align-items: center; text-align: center; gap: 5px; }
-    .hero-right { max-width: 320px; }
+    .hero-inner { flex-direction: column-reverse; align-items: center; text-align: center; gap: 15px; justify-content: center; }
+    .hero-right { max-width: 320px; flex: none; }
+    .hero-left { flex: none; }
 }
 
 .hero-left { flex: 1; max-width: 600px; }
