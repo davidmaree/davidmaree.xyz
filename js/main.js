@@ -152,12 +152,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
 
+    const DM_LOGO = [
+        { t: "  ██████╗ ███╗   ███╗       ██╗  ██╗██╗   ██╗███████╗", c: "term-ok" },
+        { t: "  ██╔══██╗████╗ ████║       ╚██╗██╔╝╚██╗ ██╔╝╚══███╔╝", c: "term-ok" },
+        { t: "  ██║  ██║██╔████╔██║        ╚███╔╝  ╚████╔╝   ███╔╝  ", c: "term-ok" },
+        { t: "  ██║  ██║██║╚██╔╝██║  ██╗   ██╔██╗   ╚██╔╝   ███╔╝   ", c: "term-ok" },
+        { t: "  ██████╔╝██║ ╚═╝ ██║  ██║  ██╔╝ ██╗   ██║   ███████╗ ", c: "term-ok" },
+        { t: "  ╚═════╝ ╚═╝     ╚═╝  ╚═╝  ╚═╝  ╚═╝   ╚═╝   ╚══════╝ ", c: "term-ok" },
+    ];
+
     function runTerminal() {
         termBody.innerHTML = '';
         let i = 0;
 
         function nextLine() {
-            // remove old cursor
             const old = termBody.querySelector('.term-cursor');
             if (old) old.remove();
 
@@ -170,17 +178,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 termBody.scrollTop = termBody.scrollHeight;
                 setTimeout(nextLine, t === '' ? 260 : Math.random() * 90 + 40);
             } else {
-                // done — fade out terminal, show site
+                // Print DM.XYZ logo then fade to site
                 setTimeout(() => {
-                    terminal.style.transition = 'opacity .8s ease';
-                    terminal.style.opacity    = '0';
-                    setTimeout(() => {
-                        terminal.style.display = 'none';
-                        main.style.display = 'block';
-                        document.body.classList.remove('no-scroll');
-                        initSite();
-                    }, 820);
-                }, 1100);
+                    const blank = document.createElement('div');
+                    termBody.appendChild(blank);
+                    let j = 0;
+                    function nextLogo() {
+                        if (j < DM_LOGO.length) {
+                            const { t, c } = DM_LOGO[j++];
+                            const div = document.createElement('div');
+                            if (c) div.classList.add(c);
+                            div.textContent = t;
+                            termBody.appendChild(div);
+                            termBody.scrollTop = termBody.scrollHeight;
+                            setTimeout(nextLogo, 55);
+                        } else {
+                            setTimeout(() => {
+                                terminal.style.transition = 'opacity .8s ease';
+                                terminal.style.opacity    = '0';
+                                setTimeout(() => {
+                                    terminal.style.display = 'none';
+                                    main.style.display = 'block';
+                                    document.body.classList.remove('no-scroll');
+                                    initSite();
+                                }, 820);
+                            }, 1400);
+                        }
+                    }
+                    nextLogo();
+                }, 500);
             }
         }
         setTimeout(nextLine, 400);
