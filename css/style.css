@@ -360,9 +360,37 @@ body.cursor-click #cursor-ring {
     gap: 4rem;
 }
 @media (max-width: 900px) {
-    .hero-inner { flex-direction: column-reverse; align-items: center; text-align: center; gap: 15px; justify-content: center; }
-    .hero-right { max-width: 320px; flex: none; }
-    .hero-left { flex: none; }
+    .hero-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0;
+        justify-content: center;
+    }
+    .hero-left, .hero-right {
+        display: contents;
+    }
+    .status-pill {
+        order: 1;
+        margin-bottom: 1.5rem;
+    }
+    .hero-photo-wrap {
+        order: 2;
+        width: 100%;
+        max-width: 380px;
+        margin-bottom: 2rem;
+    }
+    .hero-name {
+        order: 3;
+        margin-bottom: 1rem;
+    }
+    .hero-tagline {
+        order: 4;
+        margin-bottom: 2rem;
+    }
+    .hero-btns {
+        order: 5;
+    }
 }
 
 .hero-left { flex: 1; max-width: 600px; }
