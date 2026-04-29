@@ -234,14 +234,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Schedule Meeting buttons (placeholder)
+    // Schedule Meeting buttons
     function initScheduleBtns() {
         ['schedule-hero-btn', 'schedule-contact-btn'].forEach(id => {
             const el = document.getElementById(id);
-            if (el) el.addEventListener('click', e => {
-                e.preventDefault();
-                alert('Booking coming soon! For now, reach out via WhatsApp or Email.');
-            });
+            if (el) {
+                el.href = 'https://calendar.app.google/wEUWjJ9b4NHAEVVp8';
+                el.target = '_blank';
+                el.rel = 'noopener noreferrer';
+            }
         });
     }
 
