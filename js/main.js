@@ -534,4 +534,42 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle='#030303'; ctx.fillRect(0,0,W,H);
     }
 
+    // ══════════════════════════════════════════════
+    // STATUS PILL CYCLER
+    // ══════════════════════════════════════════════
+    const STATUSES = [
+        { text: 'Open for projects',      color: '#22C55E', rgb: '34,197,94'   },
+        { text: 'Currently coding...',    color: '#38BDF8', rgb: '56,189,248'  },
+        { text: 'Deep in the zone...',    color: '#F97316', rgb: '249,115,22'  },
+        { text: 'Building something...',  color: '#A78BFA', rgb: '167,139,250' },
+        { text: 'Available for hire',     color: '#22C55E', rgb: '34,197,94'   },
+        { text: 'Shipping features...',   color: '#FACC15', rgb: '250,204,21'  },
+    ];
+
+    const statusText = document.getElementById('status-text');
+    const statusDot  = document.getElementById('status-dot');
+    let currentStatus = 0;
+
+    function cycleStatus() {
+        // Pick a random status that isn't the current one
+        let next;
+        do { next = Math.floor(Math.random() * STATUSES.length); } while (next === currentStatus);
+        currentStatus = next;
+        const s = STATUSES[next];
+
+        statusText.classList.add('fade');
+        setTimeout(() => {
+            statusText.textContent = s.text;
+            statusDot.style.background  = s.color;
+            statusDot.style.setProperty('--dot-rgb', s.rgb);
+            statusText.classList.remove('fade');
+        }, 300);
+    }
+
+    // Randomise interval between 4s–9s so it feels organic
+    (function scheduleNext() {
+        const delay = 4000 + Math.random() * 5000;
+        setTimeout(() => { cycleStatus(); scheduleNext(); }, delay);
+    })();
+
 });
